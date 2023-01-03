@@ -1,0 +1,62 @@
+managed; // implementation in class zbp_klu_i_certificate unique;
+with draft;
+
+define behavior for ZKLU_I_Certificate alias Certificate
+persistent table zklu_certificate
+draft table zklud_certificat
+lock master total etag LocalLastChangedAt
+//authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  association _CertificateState { create; with draft; }
+
+  field ( numbering : managed, readonly ) CertUUID;
+  field ( readonly ) StatusText;
+  field ( mandatory ) Material;
+
+  mapping for zklu_certificate
+  {
+    Material = matnr;
+    Version = version;
+    CertificationStatus = cert_status;
+    CertificateCe = cert_ce;
+    CertificateGs = cert_gs;
+    CertificateFcc = cert_fcc;
+    CertificateIso = cert_iso;
+    CertificateTuev = cert_tuev;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZKLU_I_CertificateState alias CertificateState
+persistent table zklu_cert_state
+draft table zklud_cert_state
+lock dependent by _Certificate
+//authorization dependent by _Certificate
+etag master LocalLastChangedAt
+{
+
+  association _Certificate;
+
+  delete;
+
+  field ( numbering : managed, readonly ) StateUUID;
+  field ( readonly ) CertUUID;
+
+  mapping for ZKLU_CERT_STATE
+  {
+    StateUUID = state_uuid;
+    CertUUID = cert_uuid;
+    Material = matnr;
+    Version = version;
+    Status = status;
+    StatusOld = status_old;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
