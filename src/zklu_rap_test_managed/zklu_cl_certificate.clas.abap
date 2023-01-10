@@ -1,0 +1,5 @@
+CLASS zklu_cl_certificate DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zklu_i_certificate.
+ENDCLASS.
+
+CLASS zklu_cl_certificate IMPLEMENTATION.
+ENDCLASS.

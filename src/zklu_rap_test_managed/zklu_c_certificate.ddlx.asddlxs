@@ -1,0 +1,107 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Certificate management',
+    typeNamePlural: 'Certificate',
+    title: {
+      type: #STANDARD,
+      label: 'Certificates',
+      value: 'Material' }},
+  presentationVariant: [{ sortOrder: [{ by: 'Material', direction: #DESC }] }] }
+
+annotate view ZKLU_C_Certificate with
+{
+  @UI.facet: [
+    { purpose: #HEADER,
+      type: #FIELDGROUP_REFERENCE,
+      importance: #HIGH,
+      position: 1,
+      label: 'Technical data',
+      targetQualifier: 'Header data' },
+    { id: 'Certificate',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Certificate management',
+      position: 10 },
+    { purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      importance: #HIGH,
+      position: 20,
+      targetQualifier: 'Detail',
+      label: 'Detail info' },
+    { id: 'CertificateState',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Status changes',
+      position: 30,
+      targetElement: '_CertificateState' }]
+
+  @UI.hidden: true
+  CertUUID;
+
+  @UI: {
+    lineItem: [{ position: 10 }],
+    identification: [{ position: 10 }],
+    selectionField: [{ position: 10 }] }
+  Material;
+
+  @UI: {
+    lineItem: [{
+      position: 20, label : 'material name' }],
+      identification: [{ position: 20 }] }
+  MaterialName;
+
+  @UI: {
+    lineItem: [{ position: 30 }],
+    fieldGroup: [{
+      qualifier: 'header data',
+      position: 30 }],
+    selectionField: [{ position: 30 }] }
+  Version;
+
+  @UI: {
+    lineItem: [{
+      position: 40,
+      criticality: 'Criticality',
+      label: 'Status' }],
+    fieldGroup: [{
+      qualifier: 'Header data',
+      position: 40,
+      label: 'Status',
+      criticality: 'Criticality' }],
+    selectionField: [{ position: 40 }] }
+  StatusText;
+
+  @UI: {
+    lineItem: [{ position: 50 }],
+    identification: [{ position: 50 }] }
+  CertificateCe;
+
+  @UI: {
+    lineItem: [{ position: 60 }],
+    identification: [{ position: 60 }] }
+  CertificateGs;
+
+  @UI: {
+    lineItem: [{ position: 70 }],
+    identification: [{ position: 70 }] }
+  CertificateFcc;
+
+  @UI: {
+    lineItem: [{ position: 80 }],
+    identification: [{ position: 80 }] }
+  CertificateIso;
+
+  @UI: {
+    lineItem: [{ position: 90 }],
+    identification: [{ position: 90 }] }
+  CertificateTuev;
+
+  @UI.fieldGroup: [{
+    qualifier: 'Detail',
+    position: 10 }]
+  MaterialText;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

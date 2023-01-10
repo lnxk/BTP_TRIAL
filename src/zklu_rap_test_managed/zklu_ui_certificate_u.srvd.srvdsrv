@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service Def. for manage Certificates'
+define service ZKLU_UI_Certificate_U {
+  expose ZKLU_C_Certificate as Certificate;
+  expose ZKLU_C_CertificateState as CertificateState;
+  expose ZKLU_I_MaterialText as Material_VH;
+  expose ZKLU_I_StatusVH as Status_VH;
+}

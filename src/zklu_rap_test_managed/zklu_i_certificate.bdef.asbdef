@@ -2,6 +2,7 @@ managed; // implementation in class zbp_klu_i_certificate unique;
 with draft;
 
 define behavior for ZKLU_I_Certificate alias Certificate
+implementation in class zklu_cl_certificate unique
 persistent table zklu_certificate
 draft table zklud_certificat
 lock master total etag LocalLastChangedAt
@@ -17,6 +18,8 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) CertUUID;
   field ( readonly ) StatusText;
   field ( mandatory ) Material;
+
+  determination setInitialValues on modify { create; }
 
   mapping for zklu_certificate
   {
